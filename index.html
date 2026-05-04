@@ -34,24 +34,110 @@
         };
 
         const SEMINARS_DATA = [
-            { id: "B2F", code: "B2F", title: "Přípravný seminář k mezinárodní zkoušce z AJ – úroveň B2", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník"], isCertificate: true, target: "studenti s pokročilou znalostí angličtiny (B1+)", goal: "Příprava k certifikátu", warning: "Výběrový seminář – vstupní test proběhne na konci 2. ročníku.", annotation: "Seminář je zaměřen na efektivní a intenzivní přípravu k mezinárodní zkoušce na úrovni B2. Studenti si procvičí všechny testované oblasti (Listening, Writing, Speaking, Use of English) a vyzkouší si simulaci zkoušky nanečisto." },
-            { id: "CAE", code: "CAE", title: "Přípravný seminář k mezinárodní zkoušce z AJ – úroveň C1", subject: "Anglický jazyk", group: "Jazyky", years: ["4. ročník"], isCertificate: true, target: "studenti s vynikající znalostí AJ (B2+/C1)", goal: "Příprava k certifikátu", warning: "Výběrový seminář – vstupní test proběhne na konci 3. ročníku.", annotation: "Seminář je zaměřen na přípravu ke zkoušce Cambridge English: Advanced (CAE). Náročná úroveň jazyka zahrnuje akademické psaní, komplexní gramatiku a plynulou konverzaci na abstraktní témata." },
-            { id: "PAJ", code: "PAJ", title: "Přípravný seminář k maturitě z anglického jazyka", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "budoucí maturanti z AJ", goal: "Příprava k maturitě", warning: "Seminář je koncipován jako dvouletý.", annotation: "Seminář se zaměřuje na komplexní přípravu k ústní části profilové maturitní zkoušky z AJ. Prohlubuje znalosti v rámci maturitních témat a procvičuje mluvený projev." },
-            { id: "KAJ", code: "KAJ", title: "Konverzační seminář z anglického jazyka", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "všichni studenti", goal: "Konverzace", warning: "", annotation: "Seminář je určen studentům, kteří chtějí rozvíjet své komunikační schopnosti v běžných i profesních situacích formou diskuzí, prezentací a interaktivních her." },
-            { id: "ZD", code: "ZD", title: "Příprava na zkoušku Zertifikat Deutsch B1", subject: "Německý jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], isCertificate: true, target: "studenti NJ", goal: "Příprava k certifikátu", warning: "Obsah je stejný pro 3. i 4. ročník.", annotation: "Systematická příprava k získání mezinárodně uznávaného certifikátu Goethe-Zertifikat B1. Nácvik čtení, poslechu, psaní a mluvení podle oficiálních testů." },
-            { id: "KNJ", code: "KNJ", title: "Konverzace v německém jazyce", subject: "Německý jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "studenti NJ", goal: "Konverzace", warning: "", annotation: "Praktické procvičování mluvené němčiny v reálných situacích. Ve 4. ročníku se seminář více zaměřuje na konverzační témata k maturitě." },
-            { id: "KFJ", code: "KFJ", title: "Konverzace ve francouzském jazyce", subject: "Francouzský jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "studenti FJ", goal: "Konverzace", warning: "", annotation: "Rozvoj komunikačních dovedností skrze reálie a kulturu frankofonních zemí. Ve 4. ročníku intenzivnější příprava k ústní části maturity." },
-            { id: "LS", code: "LS", title: "Literární seminář", subject: "Český jazyk", group: "Společenskovědní", years: ["3. ročník", "4. ročník"], target: "zájemci o literaturu a humanitní vědy", goal: "Příprava k maturitě", warning: "Seminář si lze zapsat pro 3. i 4. ročník.", annotation: "Seminář je určen studentům, kteří mají zájem o hlubší poznání literatury a chtějí se lépe připravit na maturitní zkoušku z českého jazyka. Zaměříme se na četbu a interpretaci vybraných literárních děl a diskusi o tématech." },
-            { id: "SCD", code: "SCD", title: "Seminář z dějepisu", subject: "Dějepis", group: "Společenskovědní", years: ["3. ročník", "4. ročník"], target: "zájemci o historii, politologii, práva", goal: "Příprava k maturitě / VŠ", warning: "Ve 4. ročníku je seminář zaměřen na intenzivní přípravu k maturitě.", annotation: "Ve 3. ročníku se věnujeme regionálním dějinám a konkrétním osudům v našem okolí. Druhé pololetí pak patří 20. století. Ve 4. ročníku probíhá systematická příprava na maturitu a přijímací zkoušky." },
-            { id: "SVS", code: "SVS", title: "Společenskovědní seminář", subject: "Základy společenských věd", group: "Společenskovědní", years: ["3. ročník", "4. ročník"], target: "zájemci o práva, sociologii, ekonomii", goal: "Příprava k maturitě", warning: "Seminář je koncipován jako dvouletý.", annotation: "Zahrnuje základy filozofie, sociologie, politologie, ekonomie a práva. Ve 4. ročníku probíhá intenzivní příprava na maturitní okruhy a SCIO testy (ZSV)." },
-            { id: "PSY", code: "PSY", title: "Psychologie", subject: "Základy společenských věd", group: "Společenskovědní", years: ["3. ročník", "4. ročník"], target: "zájemci o psychologii a sociální práci", goal: "Všeobecný přehled", warning: "Ve 3. ročníku úvod do disciplíny, ve 4. ročníku psychopatologie a klinická psychologie.", annotation: "Pochopení lidského chování, základy diagnostiky a rozbor kazuistik. Vhodné pro budoucí studenty humanitních oborů a medicíny." },
-            { id: "SCM", code: "SCM", title: "Seminář a cvičení z matematiky", subject: "Matematika", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "studenti technických a ekonomických oborů", goal: "Příprava k maturitě / VŠ", warning: "Seminář je koncipován jako dvouletý.", annotation: "Rozšíření matematického aparátu o komplexní čísla, analytickou geometrii a diferenciální počet. Klíčová příprava pro technické VŠ." },
-            { id: "SCF", code: "SCF", title: "Seminář a cvičení z fyziky", subject: "Fyzika", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "zájemci o techniku a fyziku", goal: "Příprava k maturitě / VŠ", warning: "Seminář je koncipován jako dvouletý.", annotation: "Řešení praktických i teoretických úloh, pokusy a měření. Ve 4. ročníku příprava na přijímací zkoušky na technické VŠ." },
-            { id: "SCH", code: "SCH", title: "Seminář a cvičení z chemie", subject: "Chemie", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "zájemci o medicínu, farmacii", goal: "Příprava k maturitě / VŠ", warning: "Seminář je koncipován jako dvouletý.", annotation: "Organická, anorganická chemie a biochemie v souvislostech. Laboratorní praktika a nácvik reakčních mechanismů." },
-            { id: "SCB", code: "SCB", title: "Seminář a cvičení z biologie", subject: "Biologie", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "budoucí lékaři, veterináři", goal: "Příprava k maturitě / VŠ", warning: "Seminář je koncipován jako dvouletý.", annotation: "Hlubší vhled do botaniky, zoologie, genetiky a biologie člověka. Mikroskopování a řešení modelových testů na medicínu." },
-            { id: "SCZ", code: "SCZ", title: "Seminář ze zeměpisu", subject: "Zeměpis", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "zájemci o geografii, ekonomii", goal: "Příprava k maturitě", warning: "Seminář je koncipován jako dvouletý.", annotation: "Zeměpis cestovního ruchu, regionální geografie, politická geografie a globální problémy lidstva." },
-            { id: "SCI", code: "SCI", title: "Seminář a cvičení z informatiky", subject: "Informatika", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "budoucí programátoři", goal: "Všeobecný přehled / VŠ", warning: "Seminář je koncipován jako dvouletý.", annotation: "Algoritmizace, základy programování (Python), webové technologie a databáze. Práce na samostatných projektech." },
-            { id: "SVV", code: "SVV", title: "Seminář z výtvarné výchovy", subject: "Výtvarná výchova", group: "Umělecké", years: ["3. ročník", "4. ročník"], target: "zájemci o architekturu, umělecké školy", goal: "Příprava k maturitě", warning: "Seminář je koncipován jako dvouletý.", annotation: "Dějiny umění v souvislostech a praktická tvorba. Ve 4. ročníku příprava portfolia a nácvik rozboru uměleckých děl." }
+            { 
+                id: "B2F", 
+                code: "B2F", 
+                title: "Přípravný seminář k mezinárodní zkoušce z anglického jazyka - úroveň B2", 
+                subject: "Anglický jazyk", 
+                group: "Jazyky", 
+                years: ["3. ročník"], 
+                isCertificate: true, 
+                target: "Studenti, kteří chtějí získat mezinárodně uznávaný certifikát B2 First a potvrdit tak svou jazykovou samostatnost pro potřeby VŠ nebo zaměstnání.", 
+                goal: "Příprava k certifikátu", 
+                warning: "Vstupní test se skládá na konci 2. ročníku.", 
+                annotation: "Chcete proměnit své znalosti angličtiny v oficiální certifikát, který vám otevře dveře na univerzity a k lepším pracovním nabídkám? Tento výběrový seminář je zaměřený na efektivní a intenzivní přípravu k mezinárodní zkoušce na úrovni B2. Rozvíjejí a prohlubují se všechny testované dovednosti (listening, writing, speaking, use of English). Podmínkou přijetí je úspěšné složení vstupního testu, který zaručuje, že tempo výuky bude odpovídat vašim pokročilým schopnostem. Seminář vyžaduje vysokou míru samostatnosti a aktivní přístup k přípravě." 
+            },
+            { 
+                id: "CAE", 
+                code: "CAE", 
+                title: "Přípravný seminář k mezinárodní zkoušce z anglického jazyka - úroveň C1", 
+                subject: "Anglický jazyk", 
+                group: "Jazyky", 
+                years: ["4. ročník"], 
+                isCertificate: true, 
+                target: "Pokročilí studenti angličtiny, kteří míří na prestižní univerzity nebo plánují studium v zahraničí a chtějí získat certifikát C1 Advanced.", 
+                goal: "Příprava k certifikátu", 
+                warning: "Vstupní test se skládá na konci 3. ročníku.", 
+                annotation: "Seminář je určen pro studenty s velmi dobrou znalostí jazyka, kteří chtějí dosáhnout úrovně C1. Zaměřujeme se na náročné disciplíny jako je porozumění složitým textům, akademické psaní a plynulá argumentace v diskuzích. Cílem je precizní zvládnutí formátu zkoušky CAE a odstranění jazykových nepřesností. Výuka probíhá ve vysokém tempu a předpokládá se pravidelná domácí příprava a zájem o aktuální globální témata." 
+            },
+            { 
+                id: "SCD", 
+                code: "SCD", 
+                title: "Seminář z dějepisu", 
+                subject: "Dějepis", 
+                group: "Společenskovědní", 
+                years: ["3. ročník", "4. ročník"], 
+                target: "Zájemci o historii, politologii, pedagogiku a další humanitní obory, které vyžadují hlubší znalost historických souvislostí. Uchazeči o studium historie, archivnictví či mezinárodních vztahů.", 
+                goal: "Maturita / VŠ", 
+                warning: "Ve 4. ročníku je seminář zaměřen na intenzivní přípravu k maturitě.", 
+                annotation: "Ve 3. ročníku se seminář věnuje vybraným kapitolám z českých a regionálních dějin, badatelské práci s prameny v terénu a konkrétním osudům a místům v našem okolí. Druhé pololetí pak věnujeme vybraným kapitolám 20. století, které zásadně zformovaly dnešní svět. Seminář rozvíjí schopnost pracovat s historickými prameny a kriticky hodnotit různé interpretace minulosti. Ve 4. ročníku se seminář mění v intenzivní přípravu na maturitu a přijímací zkoušky na vysoké školy. Cílem je propojit znalosti od pravěku až po moderní dějiny do uceleného a logického celku." 
+            },
+            { 
+                id: "LS", 
+                code: "LS", 
+                title: "Literární seminář", 
+                subject: "Český jazyk", 
+                group: "Společenskovědní", 
+                years: ["3. ročník", "4. ročník"], 
+                target: "Studenti, kteří mají zájem o literaturu, tvůrčí psaní a humanitní obory. Zájemci o kvalitní přípravu na profilovou část maturity z českého jazyka.", 
+                goal: "Maturita", 
+                warning: "Seminář si lze zapsat pro 3. i 4. ročník.", 
+                annotation: "Seminář je určen studentům, kteří mají zájem o hlubší poznání literatury a chtějí se lépe připravit na maturitní zkoušku z českého jazyka. Zaměříme se na četbu a interpretaci vybraných literárních děl, diskusi o tématech, postavách a literárních kontextech. Součástí je i nácvik analýzy uměleckého textu a rozvoj dovedností potřebných pro písemnou i ústní část maturitní zkoušky." 
+            },
+            { 
+                id: "ZD", 
+                code: "ZD", 
+                title: "Příprava na zkoušku Zertifikat Deutsch B1", 
+                subject: "Německý jazyk", 
+                group: "Jazyky", 
+                years: ["3. ročník", "4. ročník"], 
+                isCertificate: true, 
+                target: "Studenti německého jazyka, kteří si chtějí nechat potvrdit úroveň B1 oficiálním dokladem platným v celém německy mluvícím světě.", 
+                goal: "Příprava k certifikátu", 
+                warning: "Obsah je stejný pro 3. i 4. ročník.", 
+                annotation: "Seminář nabízí systematickou přípravu k získání mezinárodně uznávaného certifikátu Goethe-Zertifikat B1. V průběhu kurzu si studenti osvojí strategie pro úspěšné zvládnutí všech částí testu: čtení s porozuměním, poslech, písemný projev a ústní zkoušku. Pracujeme s autentickými zkušebními materiály a zaměřujeme se na praktickou komunikaci v každodenních situacích." 
+            },
+            { 
+                id: "SVS", 
+                code: "SVS", 
+                title: "Společenskovědní seminář", 
+                subject: "Základy společenských věd", 
+                group: "Společenskovědní", 
+                years: ["3. ročník", "4. ročník"], 
+                target: "Zájemci o práva, sociologii, ekonomii, politologii a žurnalistiku. Studenti připravující se na testy OSP a ZSV v rámci přijímacího řízení.", 
+                goal: "Maturita / VŠ", 
+                warning: "Seminář je koncipován jako dvouletý.", 
+                annotation: "Seminář prohlubuje znalosti ze základů společenských věd s důrazem na praktické využití a aktuální dění. Ve 3. ročníku se věnujeme především psychologii, sociologii a právu. Ve 4. ročníku se zaměřujeme na politologii, ekonomii a filozofii. Velká část výuky je věnována nácviku SCIO testů (ZSV) a přípravě na maturitní témata formou diskuzí a analýz." 
+            },
+            { 
+                id: "PSY", 
+                code: "PSY", 
+                title: "Psychologie", 
+                subject: "Základy společenských věd", 
+                group: "Společenskovědní", 
+                years: ["3. ročník", "4. ročník"], 
+                target: "Zájemci o studium psychologie, medicíny, pedagogiky a sociální práce. Studenti, kteří chtějí lépe porozumět sobě i ostatním.", 
+                goal: "Všeobecný přehled", 
+                warning: "Vhodné jako doplněk k SVS nebo samostatně.", 
+                annotation: "Seminář nabízí hlubší vhled do tajů lidské psychiky. Probereme základní psychologické směry, fungování paměti, emocí a osobnosti. Velký prostor je věnován psychologii komunikace, řešení konfliktů a základům psychopatologie (duševní poruchy). Výuka je doplněna o praktické testy, rozbory kazuistik a nácvik relaxačních technik." 
+            },
+            { 
+                id: "SCZ", 
+                code: "SCZ", 
+                title: "Seminář ze zeměpisu", 
+                subject: "Zeměpis", 
+                group: "Přírodovědné", 
+                years: ["3. ročník", "4. ročník"], 
+                target: "Budoucí geografové, meteorologové, ekologové, ale i zájemci o mezinárodní obchod a cestovní ruch. Maturanti ze zeměpisu.", 
+                goal: "Maturita", 
+                warning: "Seminář je koncipován jako dvouletý.", 
+                annotation: "Seminář propojuje fyzickou a socioekonomickou geografii do širších souvislostí. Zaměřujeme se na globální problémy současného světa, geopolitiku, ochranu životního prostředí a moderní technologie v geografii (GIS). Ve 4. ročníku probíhá systematické opakování regionální geografie světa a Česka k maturitě." 
+            },
+            { id: "PAJ", code: "PAJ", title: "Přípravný seminář k maturitě z anglického jazyka", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "Studenti, kteří si zvolili angličtinu jako maturitní předmět a chtějí si upevnit znalosti gramatiky a slovní zásoby.", goal: "Maturita", warning: "Seminář je koncipován jako dvouletý.", annotation: "Seminář se zaměřuje na komplexní přípravu k ústní i písemné části profilové maturitní zkoušky z AJ. Prohlubuje znalosti v rámci 25 maturitních témat, procvičuje reálie anglicky mluvících zemí a nácvik mluveného projevu." },
+            { id: "KAJ", code: "KAJ", title: "Konverzační seminář z anglického jazyka", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "Studenti, kteří chtějí překonat ostych z mluvení a zlepšit svou plynulost v angličtině bez ohledu na maturitu.", goal: "Konverzace", warning: "", annotation: "Interaktivní seminář postavený na diskuzi, hrách a prezentacích. Cílem je rozvoj pohotové komunikace v běžných i profesních situacích." },
+            { id: "KNJ", code: "KNJ", title: "Konverzace v německém jazyce", subject: "Německý jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "Zájemci o aktivní používání němčiny, budoucí maturanti z NJ.", goal: "Konverzace", warning: "", annotation: "Praktické procvičování mluvené němčiny v reálných situacích. Ve 4. ročníku se seminář více zaměřuje na konverzační témata k maturitě a reálie německy mluvících zemí." },
+            { id: "SCM", code: "SCM", title: "Seminář a cvičení z matematiky", subject: "Matematika", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "Studenti technických, ekonomických a přírodovědných oborů, budoucí matematici a IT experti.", goal: "Maturita / VŠ", warning: "Seminář je koncipován jako dvouletý.", annotation: "Rozšíření matematického aparátu o komplexní čísla, analytickou geometrii a diferenciální počet. Klíčová příprava pro studium na technických univerzitách a VŠE." },
+            { id: "SCI", code: "SCI", title: "Seminář a cvičení z informatiky", subject: "Informatika", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "Budoucí programátoři, správci sítí a zájemci o moderní technologie a umělou inteligenci.", goal: "VŠ / Praxe", warning: "Seminář je koncipován jako dvouletý.", annotation: "Algoritmizace, základy programování v Pythonu, webové technologie (HTML/CSS/JS) a základy databází. Práce na samostatných projektech a řešení logických úloh." }
         ];
 
         const App = () => {
@@ -232,12 +318,12 @@
                                 </p>
                             </section>
 
-                            <section className="bg-slate-50 p-6 rounded-2xl border border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <h4 className="text-slate-400 font-black mb-1 uppercase tracking-widest text-[10px]">Pro koho</h4>
-                                    <p className="text-slate-600 font-bold text-sm">{selectedSeminar.target}</p>
+                            <section className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                                <div className="mb-4">
+                                    <h4 className="text-slate-400 font-black mb-1 uppercase tracking-widest text-[10px]">Studenti</h4>
+                                    <p className="text-slate-600 font-bold text-sm leading-relaxed">{selectedSeminar.target}</p>
                                 </div>
-                                <div>
+                                <div className="pt-4 border-t border-slate-200/50">
                                     <h4 className="text-slate-400 font-black mb-1 uppercase tracking-widest text-[10px]">Cíl semináře</h4>
                                     <p className="text-slate-600 font-bold text-sm">{selectedSeminar.goal}</p>
                                 </div>
