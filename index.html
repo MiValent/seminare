@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Seminářů 2025/26 | Gymnázium Slaný</title>
+    <title>Katalog Seminářů 2026/27 | Gymnázium Slaný</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 pb-20">
@@ -29,12 +34,227 @@
         };
 
         const SEMINARS_DATA = [
-            { id: "B2F", code: "B2F", title: "Přípravný seminář k mezinárodní zkoušce z AJ – úroveň B2 (VÝBĚROVÝ)", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník"], target: "studenti s pokročilou znalostí angličtiny (B1+)", goal: "Příprava k certifikátu", warning: "Výběrový seminář – vstupní test proběhne na konci 2. ročníku.", annotation: "Seminář je zaměřen na efektivní a intenzivní přípravu k mezinárodní zkoušce na úrovni B2. Studenti si procvičí všechny testované oblasti (Listening, Writing, Speaking, Use of English) a vyzkouší si simulaci zkoušky nanečisto." },
-            { id: "CAE", code: "CAE", title: "Přípravný seminář k mezinárodní zkoušce z AJ – úroveň C1 (VÝBĚROVÝ)", subject: "Anglický jazyk", group: "Jazyky", years: ["4. ročník"], target: "studenti s vynikající znalostí AJ (B2+/C1)", goal: "Příprava k certifikátu", warning: "Výběrový seminář – vstupní test proběhne na konci 3. ročníku.", annotation: "Seminář je zaměřen na přípravu ke zkoušce Cambridge English: Advanced (CAE). Náročná úroveň jazyka zahrnuje akademické psaní, komplexní gramatiku a plynulou konverzaci na abstraktní témata." },
+            { id: "B2F", code: "B2F", title: "Přípravný seminář k mezinárodní zkoušce z AJ – úroveň B2", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník"], target: "studenti s pokročilou znalostí angličtiny (B1+)", goal: "Příprava k certifikátu", warning: "Výběrový seminář – vstupní test proběhne na konci 2. ročníku.", annotation: "Seminář je zaměřen na efektivní a intenzivní přípravu k mezinárodní zkoušce na úrovni B2. Studenti si procvičí všechny testované oblasti (Listening, Writing, Speaking, Use of English) a vyzkouší si simulaci zkoušky nanečisto." },
+            { id: "CAE", code: "CAE", title: "Přípravný seminář k mezinárodní zkoušce z AJ – úroveň C1", subject: "Anglický jazyk", group: "Jazyky", years: ["4. ročník"], target: "studenti s vynikající znalostí AJ (B2+/C1)", goal: "Příprava k certifikátu", warning: "Výběrový seminář – vstupní test proběhne na konci 3. ročníku.", annotation: "Seminář je zaměřen na přípravu ke zkoušce Cambridge English: Advanced (CAE). Náročná úroveň jazyka zahrnuje akademické psaní, komplexní gramatiku a plynulou konverzaci na abstraktní témata." },
             { id: "PAJ", code: "PAJ", title: "Přípravný seminář k maturitě z anglického jazyka", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "budoucí maturanti z AJ", goal: "Příprava k maturitě", warning: "Seminář je koncipován jako dvouletý.", annotation: "Seminář se zaměřuje na komplexní přípravu k ústní části profilové maturitní zkoušky z AJ. Prohlubuje znalosti v rámci maturitních témat a procvičuje mluvený projev." },
             { id: "KAJ", code: "KAJ", title: "Konverzační seminář z anglického jazyka", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "všichni studenti", goal: "Konverzace", warning: "", annotation: "Seminář je určen studentům, kteří chtějí rozvíjet své komunikační schopnosti v běžných i profesních situacích formou diskuzí, prezentací a interaktivních her." },
             { id: "ZD", code: "ZD", title: "Příprava na zkoušku Zertifikat Deutsch B1", subject: "Německý jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "studenti NJ", goal: "Příprava k certifikátu", warning: "Obsah je stejný pro 3. i 4. ročník.", annotation: "Systematická příprava k získání mezinárodně uznávaného certifikátu Goethe-Zertifikat B1. Nácvik čtení, poslechu, psaní a mluvení podle oficiálních testů." },
             { id: "KNJ", code: "KNJ", title: "Konverzace v německém jazyce", subject: "Německý jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "studenti NJ", goal: "Konverzace", warning: "", annotation: "Praktické procvičování mluvené němčiny v reálných situacích. Ve 4. ročníku se seminář více zaměřuje na konverzační témata k maturitě." },
+            { id: "KFJ", code: "KFJ", title: "Konverzace ve francouzském jazyce", subject: "Francouzský jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "studenti FJ", goal: "Konverzace", warning: "", annotation: "Rozvoj komunikačních dovedností skrze reálie a kulturu frankofonních zemí. Ve 4. ročníku intenzivnější příprava k ústní části maturity." },
+            { id: "LS", code: "LS", title: "Literární seminář", subject: "Český jazyk", group: "Společenskovědní", years: ["3. ročník", "4. ročník"], target: "všichni studenti", goal: "Příprava k maturitě", warning: "Ve 4. ročníku je zaměřen na přípravu k maturitě.", annotation: "Prohlubování čtenářské gramotnosti a interpretace děl. Ve 4. ročníku je kladen důraz na analýzu maturitních děl a nácvik ústního projevu." },
+            { id: "SCD", code: "SCD", title: "Seminář z dějepisu", subject: "Dějepis", group: "Společenskovědní", years: ["3. ročník", "4. ročník"], target: "zájemci o historii, práva", goal: "Všeobecný přehled", warning: "Seminář je koncipován jako dvouletý.", annotation: "Regionální a moderní dějiny, analýza historických pramenů a exkurze. Ve 4. ročníku probíhá komplexní historický přehled jako příprava k maturitě." },
+            { id: "SVS", code: "SVS", title: "Společenskovědní seminář", subject: "Základy společenských věd", group: "Společenskovědní", years: ["3. ročník", "4. ročník"], target: "zájemci o práva, sociologii, ekonomii", goal: "Příprava k maturitě", warning: "Seminář je koncipován jako dvouletý.", annotation: "Zahrnuje základy filozofie, sociologie, politologie, ekonomie a práva. Ve 4. ročníku intenzivní příprava na ZSV testy a maturitu." },
+            { id: "PSY", code: "PSY", title: "Psychologie", subject: "Základy společenských věd", group: "Společenskovědní", years: ["3. ročník", "4. ročník"], target: "zájemci o psychologii a sociální práci", goal: "Všeobecný přehled", warning: "Obsah 3. a 4. ročníku se liší (úvod vs. psychopatologie).", annotation: "Úvod do obecné, vývojové a sociální psychologie. Pochopení lidského chování, základy diagnostiky a rozbor kazuistik." },
+            { id: "SCM", code: "SCM", title: "Seminář a cvičení z matematiky", subject: "Matematika", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "studenti technických oborů", goal: "Příprava k maturitě / VŠ", warning: "Seminář je koncipován jako dvouletý.", annotation: "Rozšíření matematického aparátu o komplexní čísla, analytickou geometrii a diferenciální počet. Klíčová příprava pro technické VŠ." },
+            { id: "SCF", code: "SCF", title: "Seminář a cvičení z fyziky", subject: "Fyzika", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "zájemci o techniku a fyziku", goal: "Příprava k maturitě / VŠ", warning: "Seminář je koncipován jako dvouletý.", annotation: "Řešení praktických i teoretických úloh, pokusy a měření. Ve 4. ročníku příprava na přijímací zkoušky na technické VŠ." },
+            { id: "SCH", code: "SCH", title: "Seminář a cvičení z chemie", subject: "Chemie", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "zájemci o medicínu, farmacii", goal: "Příprava k maturitě / VŠ", warning: "Seminář je koncipován jako dvouletý.", annotation: "Organická, anorganická chemie a biochemie v souvislostech. Laboratorní praktika a nácvik reakčních mechanismů." },
+            { id: "SCB", code: "SCB", title: "Seminář a cvičení z biologie", subject: "Biologie", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "budoucí lékaři, veterináři", goal: "Příprava k maturitě / VŠ", warning: "Seminář je koncipován jako dvouletý.", annotation: "Hlubší vhled do botaniky, zoologie, genetiky a biologie člověka. Mikroskopování a řešení modelových testů na medicínu." },
+            { id: "SCZ", code: "SCZ", title: "Seminář ze zeměpisu", subject: "Zeměpis", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "zájemci o geografii, ekonomii", goal: "Příprava k maturitě", warning: "Seminář je koncipován jako dvouletý.", annotation: "Zeměpis cestovního ruchu, regionální geografie, politická geografie a globální problémy lidstva." },
+            { id: "SCI", code: "SCI", title: "Seminář a cvičení z informatiky", subject: "Informatika", group: "Přírodovědné", years: ["3. ročník", "4. ročník"], target: "budoucí programátoři", goal: "Všeobecný přehled / VŠ", warning: "Seminář je koncipován jako dvouletý.", annotation: "Algoritmizace, základy programování (Python), webové technologie a databáze. Práce na samostatných projektech." },
+            { id: "SVV", code: "SVV", title: "Seminář z výtvarné výchovy", subject: "Výtvarná výchova", group: "Umělecké", years: ["3. ročník", "4. ročník"], target: "zájemci o architekturu, umělecké školy", goal: "Příprava k maturitě", warning: "Seminář je koncipován jako dvouletý.", annotation: "Dějiny umění v souvislostech a praktická tvorba. Ve 4. ročníku příprava portfolia a nácvik rozboru uměleckých děl." }
+        ];
+
+        const App = () => {
+          const [selectedSeminar, setSelectedSeminar] = useState(null);
+          const [searchQuery, setSearchQuery] = useState("");
+          const [yearFilter, setYearFilter] = useState("all");
+          const [groupFilter, setGroupFilter] = useState("all");
+
+          // Seskupení a seřazení dat
+          const groupedSeminars = useMemo(() => {
+            const filtered = SEMINARS_DATA.filter(s => {
+              const matchesSearch = s.title.toLowerCase().includes(searchQuery.toLowerCase()) || s.code.toLowerCase().includes(searchQuery.toLowerCase());
+              const matchesYear = yearFilter === "all" || s.years.includes(yearFilter);
+              const matchesGroup = groupFilter === "all" || s.group === groupFilter;
+              return matchesSearch && matchesYear && matchesGroup;
+            });
+
+            // Vytvoření objektu, kde klíč je název předmětu
+            const groups = filtered.reduce((acc, seminar) => {
+              const subject = seminar.subject;
+              if (!acc[subject]) acc[subject] = [];
+              acc[subject].push(seminar);
+              return acc;
+            }, {});
+
+            // Seřazení předmětů abecedně
+            return Object.keys(groups).sort((a, b) => a.localeCompare(b, 'cs')).map(subject => ({
+              subject,
+              seminars: groups[subject].sort((a, b) => a.title.localeCompare(b.title, 'cs'))
+            }));
+          }, [searchQuery, yearFilter, groupFilter]);
+
+          const filterGroups = ["all", ...new Set(SEMINARS_DATA.map(s => s.group))];
+
+          return (
+            <div className="min-h-screen">
+              <header className="bg-white border-b sticky top-0 z-30 shadow-sm">
+                <div className="max-w-6xl mx-auto px-4 py-6">
+                  <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div className="flex items-center gap-4 text-center md:text-left">
+                        <div className="hidden sm:flex w-12 h-12 bg-indigo-600 rounded-2xl items-center justify-center shadow-lg shadow-indigo-200">
+                            <Icon name="graduation-cap" className="text-white w-7 h-7" />
+                        </div>
+                        <div>
+                            <h1 className="text-2xl font-[900] tracking-tight text-slate-800 uppercase">Volba Seminářů 2026/27</h1>
+                            <p className="text-slate-500 text-xs font-bold uppercase tracking-[0.2em]">Gymnázium Slaný</p>
+                        </div>
+                    </div>
+                    
+                    <div className="flex flex-wrap w-full md:w-auto gap-3">
+                      <div className="relative flex-grow md:w-64">
+                        <Icon name="search" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
+                        <input 
+                          className="w-full pl-11 pr-4 py-3 bg-slate-100 rounded-2xl outline-none focus:ring-2 ring-indigo-500/20 focus:bg-white transition-all font-semibold text-sm" 
+                          placeholder="Hledat seminář..." 
+                          value={searchQuery}
+                          onChange={e => setSearchQuery(e.target.value)}
+                        />
+                      </div>
+                      <select className="px-4 py-3 bg-white border-2 border-slate-100 rounded-2xl font-bold text-sm outline-none focus:border-indigo-500 transition-colors cursor-pointer" value={yearFilter} onChange={e => setYearFilter(e.target.value)}>
+                        <option value="all">Všechny ročníky</option>
+                        <option value="3. ročník">3. ročník</option>
+                        <option value="4. ročník">4. ročník</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="flex overflow-x-auto gap-2 mt-8 pb-2 scrollbar-hide">
+                    {filterGroups.map(g => (
+                        <button 
+                            key={g} 
+                            onClick={() => setGroupFilter(g)} 
+                            className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap border-2 ${groupFilter === g ? "bg-slate-900 text-white border-slate-900 shadow-lg shadow-slate-200" : "bg-white text-slate-500 border-slate-100 hover:border-slate-200"}`}
+                        >
+                            {g === "all" ? "Všechny skupiny" : g}
+                        </button>
+                    ))}
+                  </div>
+                </div>
+              </header>
+
+              <main className="max-w-6xl mx-auto px-4 py-10 space-y-12">
+                {groupedSeminars.length > 0 ? groupedSeminars.map(group => (
+                  <section key={group.subject} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <div className="flex items-center gap-4 mb-6">
+                        <h2 className="text-xl font-black text-slate-800 uppercase tracking-tight">{group.subject}</h2>
+                        <div className="h-px bg-slate-200 flex-grow"></div>
+                        <span className="text-slate-400 font-bold text-xs">{group.seminars.length} {group.seminars.length === 1 ? 'seminář' : (group.seminars.length < 5 ? 'semináře' : 'seminářů')}</span>
+                    </div>
+                    <div className="subject-grid">
+                        {group.seminars.map(s => (
+                          <div 
+                            key={s.id} 
+                            onClick={() => setSelectedSeminar(s)} 
+                            className="group bg-white p-6 rounded-[2rem] border border-slate-100 hover:shadow-xl hover:shadow-indigo-500/5 hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full relative"
+                          >
+                            <div className="flex justify-between items-start mb-4">
+                                <span className="bg-slate-100 text-slate-500 font-black text-[10px] px-3 py-1 rounded-lg tracking-widest uppercase">
+                                    {s.code}
+                                </span>
+                                <div className="flex gap-1">
+                                    {s.years.map(y => (
+                                        <span key={y} className={`text-[9px] font-extrabold px-2 py-0.5 rounded-md uppercase tracking-wider border ${y.includes("3.") ? "bg-purple-50 text-purple-600 border-purple-100" : "bg-blue-50 text-blue-600 border-blue-100"}`}>
+                                            {y.split('.')[0]}.
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                            
+                            <h3 className="font-extrabold text-base text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight mb-4 flex-grow">
+                                {s.title}
+                            </h3>
+                            
+                            <div className="pt-4 border-t border-slate-50 flex items-center gap-2">
+                                <div className="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+                                <span className="text-slate-400 font-bold text-[10px] uppercase tracking-wide">
+                                    {s.group}
+                                </span>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </section>
+                )) : (
+                  <div className="py-20 text-center">
+                    <Icon name="search-x" className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+                    <p className="text-slate-500 font-bold">Nebyly nalezeny žádné semináře odpovídající vašim filtrům.</p>
+                  </div>
+                )}
+              </main>
+
+              {/* Detailní náhled (Modální okno) */}
+              {selectedSeminar && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                  <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300" onClick={() => setSelectedSeminar(null)}></div>
+                  <div className="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl relative z-10 overflow-hidden flex flex-col animate-in zoom-in duration-200 max-h-[90vh]">
+                    <div className="bg-slate-900 p-8 md:p-10 text-white relative shrink-0">
+                        <button onClick={() => setSelectedSeminar(null)} className="absolute top-6 right-6 p-2 hover:bg-white/10 rounded-full transition-colors">
+                            <Icon name="x" className="w-6 h-6" />
+                        </button>
+                        <div className="flex gap-3 mb-4 flex-wrap">
+                            <span className="px-3 py-1 bg-white/10 border border-white/20 rounded-xl text-[10px] font-black uppercase tracking-widest">
+                                {selectedSeminar.code}
+                            </span>
+                            <span className="px-3 py-1 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 rounded-xl text-[10px] font-black uppercase tracking-widest">
+                                {selectedSeminar.subject}
+                            </span>
+                        </div>
+                        <h2 className="text-2xl md:text-3xl font-[900] leading-tight tracking-tight">
+                            {selectedSeminar.title}
+                        </h2>
+                    </div>
+
+                    <div className="p-8 md:p-10 overflow-y-auto space-y-8">
+                        {selectedSeminar.warning && (
+                            <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-2xl text-red-900 text-sm font-semibold flex gap-3">
+                                <Icon name="alert-circle" className="w-5 h-5 shrink-0 text-red-500" />
+                                <span>{selectedSeminar.warning}</span>
+                            </div>
+                        )}
+                        
+                        <div className="grid gap-8">
+                            <section>
+                                <h4 className="flex items-center gap-2 text-indigo-600 font-black mb-3 uppercase tracking-widest text-[11px]">
+                                    <Icon name="book-open" className="w-4 h-4" /> Anotace
+                                </h4>
+                                <p className="text-slate-700 leading-relaxed font-medium">
+                                    {selectedSeminar.annotation}
+                                </p>
+                            </section>
+
+                            <section className="bg-slate-50 p-6 rounded-2xl border border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 className="text-slate-400 font-black mb-1 uppercase tracking-widest text-[10px]">Pro koho</h4>
+                                    <p className="text-slate-600 font-bold text-sm">{selectedSeminar.target}</p>
+                                </div>
+                                <div>
+                                    <h4 className="text-slate-400 font-black mb-1 uppercase tracking-widest text-[10px]">Cíl semináře</h4>
+                                    <p className="text-slate-600 font-bold text-sm">{selectedSeminar.goal}</p>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div className="p-6 bg-slate-50 border-t flex justify-end shrink-0">
+                        <button 
+                            onClick={() => setSelectedSeminar(null)} 
+                            className="bg-slate-900 text-white px-8 py-3 rounded-xl font-black text-[11px] uppercase tracking-[0.2em] shadow-lg hover:bg-indigo-600 transition-all"
+                        >
+                            Zavřít detail
+                        </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>            { id: "KNJ", code: "KNJ", title: "Konverzace v německém jazyce", subject: "Německý jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "studenti NJ", goal: "Konverzace", warning: "", annotation: "Praktické procvičování mluvené němčiny v reálných situacích. Ve 4. ročníku se seminář více zaměřuje na konverzační témata k maturitě." },
             { id: "KFJ", code: "KFJ", title: "Konverzace ve francouzském jazyce", subject: "Francouzský jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "studenti FJ", goal: "Konverzace", warning: "", annotation: "Rozvoj komunikačních dovedností skrze reálie a kulturu frankofonních zemí. Ve 4. ročníku intenzivnější příprava k ústní části maturity." },
             { id: "LS", code: "LS", title: "Literární seminář", subject: "Český jazyk", group: "Společenskovědní", years: ["3. ročník", "4. ročník"], target: "všichni studenti", goal: "Příprava k maturitě", warning: "Ve 4. ročníku je zaměřen na přípravu k maturitě.", annotation: "Prohlubování čtenářské gramotnosti a interpretace děl. Ve 4. ročníku je kladen důraz na analýzu maturitních děl a nácvik ústního projevu." },
             { id: "SCD", code: "SCD", title: "Seminář z dějepisu", subject: "Dějepis", group: "Společenskovědní", years: ["3. ročník", "4. ročník"], target: "zájemci o historii, práva", goal: "Všeobecný přehled", warning: "Seminář je koncipován jako dvouletý.", annotation: "Regionální a moderní dějiny, analýza historických pramenů a exkurze. Ve 4. ročníku probíhá komplexní historický přehled jako příprava k maturitě." },
