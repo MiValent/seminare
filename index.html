@@ -12,7 +12,7 @@
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         .subject-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
         }
     </style>
@@ -29,7 +29,9 @@
         const { useState, useMemo, useEffect } = React;
 
         const Icon = ({ name, className }) => {
-            useEffect(() => { lucide.createIcons(); }, []);
+            useEffect(() => { 
+                if (window.lucide) window.lucide.createIcons(); 
+            }, [name]);
             return <i data-lucide={name} className={className}></i>;
         };
 
@@ -55,7 +57,7 @@
                 years: ["4. ročník"], 
                 isCertificate: true, 
                 target: "Studenti, kteří cílí na prestižní mezinárodní certifikát Cambridge C1 Advanced pro potřeby studia v zahraničí nebo na náročných oborech v ČR.", 
-                annotation: "Posuňte svou angličtinu na úroveň rodilého mluvčího. Tento seminář je určen pro ty, kteří již mají pvelmi dobrou znalost angličtiny a chtějí proniknout do jemných nuancí jazyka, složitých gramatických struktur a bohaté slovní zásoby. Příprava směřuje ke složení mezinárodní zkoušky na úrovni C1, která je standardem pro studium na zahraničních univerzitách. Rozvíjejí a prohlubují se všechny testované dovednosti (listening, writing, speaking, use of English). Seminář je postaven na vysokém tempu, intelektuálně podnětných tématech a vyžaduje značnou míru samostatné práce." 
+                annotation: "Posuňte svou angličtinu na úroveň rodilého mluvčího. Tento seminář je určen pro ty, kteří již mají velmi dobrou znalost angličtiny a chtějí proniknout do jemných nuancí jazyka, složitých gramatických struktur a bohaté slovní zásoby. Příprava směřuje ke složení mezinárodní zkoušky na úrovni C1, která je standardem pro studium na zahraničních univerzitách. Rozvíjejí a prohlubují se všechny testované dovednosti (listening, writing, speaking, use of English). Seminář je postaven na vysokém tempu, intelektuálně podnětných tématech a vyžaduje značnou míru samostatné práce." 
             },
             { 
                 id: "SCD", 
@@ -65,9 +67,8 @@
                 group: "Společenskovědní", 
                 years: ["3. ročník", "4. ročník"], 
                 target: "Zájemci o historii, politologii, pedagogiku a další humanitní obory, které vyžadují hlubší znalost historických souvislostí. Uchazeči o studium historie, archivnictví či mezinárodních vztahů.", 
-                warning: "Seminář je koncipován jako dvouletý, lze si ho zapsat pro 3. i 4. ročník. Pozdější nástup do semináře (až ve 4. ročníku) je možný, ale ne úplně optimální - počítejte s tím, že učivo z předchozího ročníku si budete muset v případě potřeby dostudovat sami.", 
-                annotation: ""Historie není jen soupis dat, ale klíč k pochopení naší současnosti. V prvním pololetí se zaměříme na regionální dějiny našeho kraje, kde budeme objevovat „velké dějiny“ na konkrétních osudech a místech v našem okolí. Druhé pololetí pak věnujeme vybraným kapitolám 20. století, které zásadně zformovaly dnešní svět. Seminář rozvíjí schopnost pracovat s historickými prameny a kriticky hodnotit různé interpretace minulosti.
-                Ve 4. ročníku se seminář mění v intenzivní přípravu na maturitu a přijímací zkoušky na vysoké školy. Cílem je propojit znalosti od pravěku až po moderní dějiny do uceleného a logického celku. Budeme se věnovat systematizaci maturitních okruhů, procvičování historické terminologie a tréninku ústního projevu, abyste u zkoušky dokázali suverénně argumentovat v historických souvislostech." 
+                warning: "Seminář je koncipován jako dvouletý, lze si ho zapsat pro 3. i 4. ročník. Pozdější nástup do semináře (až ve 4. ročníku) je možný, ale ne úplně optimální.", 
+                annotation: "Historie není jen soupis dat, ale klíč k pochopení naší současnosti. V prvním pololetí se zaměříme na regionální dějiny našeho kraje, kde budeme objevovat „velké dějiny“ na konkrétních osudech a místech v našem okolí. Druhé pololetí pak věnujeme vybraným kapitolám 20. století, které zásadně zformovaly dnešní svět. Seminář rozvíjí schopnost pracovat s historickými prameny a kriticky hodnotit různé interpretace minulosti. Ve 4. ročníku se seminář mění v intenzivní přípravu na maturitu a přijímací zkoušky na vysoké školy. Cílem je propojit znalosti od pravěku až po moderní dějiny do uceleného a logického celku. Budeme se věnovat systematizaci maturitních okruhů, procvičování historické terminologie a tréninku ústního projevu." 
             },
             { 
                 id: "LS", 
@@ -99,9 +100,9 @@
                 subject: "Základy společenských věd", 
                 group: "Společenskovědní", 
                 years: ["3. ročník", "4. ročník"], 
-                target: "Budoucí studenti práv, politologie, mezinárodních vztahů, sociologie, filozofie či žurnalistiky. Studenti připravující se na testy OSP a ZSV v rámci přijímacího řízení na VŠ.", 
-                warning: "Seminář je koncipován jako dvouletý, lze si ho zapsat pro 3. i 4. ročník. Pozdější nástup do semináře (až ve 4. ročníku) je možný, ale ne úplně optimální - počítejte s tím, že učivo z předchozího ročníku si budete muset v případě potřeby dostudovat sami.", 
-                annotation: "Seminář nabízí prostor pro hlubokou sondu do témat, která v běžných hodinách občanského základu nestihneme probrat do detailu. Zaměříme se na fascinující svět světových náboženství, kořeny české filozofie i praktické základy práva a politologie. Seminář je ideální základnou pro všechny, kteří uvažují o studiu práv, politologie, sociologie, filozofie či žurnalistiky. Ve 4. ročníku se seminář stává platformou pro systematizaci znalostí a přípravu na budoucí vysokoškolské studium. Soustředíme se na propojování souvislostí napříč společenskými vědami a na opakování klíčových maturitních okruhů. Důraz klademe na témata, která se v běžných hodinách 4. ročníku neprobírají, čímž získáte ucelený přehled o celém oboru od antické filozofie až po moderní sociologii." 
+                target: "Budoucí studenti práv, politologie, mezinárodních vztahů, sociologie, filozofie či žurnalistiky.", 
+                warning: "Seminář je koncipován jako dvouletý.", 
+                annotation: "Seminář nabízí prostor pro hlubokou sondu do témat, která v běžných hodinách občanského základu nestihneme probrat do detailu. Zaměříme se na fascinující svět světových náboženství, kořeny české filozofie i praktické základy práva a politologie. Ve 4. ročníku se seminář stává platformou pro systematizaci znalostí a přípravu na budoucí vysokoškolské studium." 
             },
             { 
                 id: "PSY", 
@@ -110,9 +111,9 @@
                 subject: "Základy společenských věd", 
                 group: "Společenskovědní", 
                 years: ["3. ročník", "4. ročník"], 
-                target: "Zájemci o studium psychologie, medicíny i dalších humanitních a sociálních oborů. Studenti, kteří chtějí lépe porozumět sobě i ostatním.", 
-                warning: "Seminář je koncipován jako dvouletý, lze si ho zapsat pro 3. i 4. ročník. Pozdější nástup do semináře (až ve 4. ročníku) je možný, ale ne úplně optimální - počítejte s tím, že učivo z předchozího ročníku si budete muset v případě potřeby dostudovat sami.", 
-                annotation: "Seminář nabízející hlubší vhled do tajů lidské psychiky, od základních procesů vnímání a myšlení až po složité otázky osobnosti a sociálních vztahů. Kromě teoretických základů vývojové psychologie a duševního zdraví se věnujeme i praktické aplikaci poznatků. Budeme pracovat s reálnými kazuistikami a diskutovat o tématech, která hýbou současnou společností." 
+                target: "Zájemci o studium psychologie, medicíny i dalších humanitních a sociálních oborů.", 
+                warning: "Seminář je koncipován jako dvouletý.", 
+                annotation: "Seminář nabízející hlubší vhled do tajů lidské psychiky, od základních procesů vnímání a myšlení až po složité otázky osobnosti a sociálních vztahů. Kromě teoretických základů vývojové psychologie a duševního zdraví se věnujeme i praktické aplikaci poznatků." 
             },
             { 
                 id: "SCZ", 
@@ -122,40 +123,64 @@
                 group: "Přírodovědné", 
                 years: ["3. ročník", "4. ročník"], 
                 target: "Zájemci o studium geografie, mezinárodních vztahů či environmentálních věd.", 
-                warning: "Seminář je koncipován jako dvouletý, lze si ho zapsat pro 3. i 4. ročník. Pozdější nástup do semináře (až ve 4. ročníku) je možný, ale ne úplně optimální - počítejte s tím, že učivo z předchozího ročníku si budete muset v případě potřeby dostudovat sami.", 
-                annotation: "Ve 3. ročníku je tento seminář zaměřen na fenomén cestovního ruchu, který v dnešní globalizované společnosti hraje klíčovou roli. Nejde jen o popisy destinací, ale o pochopení ekonomických, sociálních a environmentálních dopadů turismu. Regionální zeměpis budeme nahlížet právě optikou cestovního ruchu, což vám pomůže pochopit specifika jednotlivých světadílů a regionů v širších souvislostech. Ve 4. ročníku se seminář stává intenzivní přípravou na maturitní zkoušku. Soustředíme se na systematizaci a prohloubení témat, která tvoří jádro maturitních otázek, s výjimkou láky probírané v běžných hodinách čtvrtého ročníku. Velký prostor je věnován praktickému nácviku maturitních situací včetně zkoušení z konkrétních okruhů, abyste k maturitnímu stolu usedli s maximální jistotou." 
+                warning: "Seminář je koncipován jako dvouletý.", 
+                annotation: "Ve 3. ročníku je tento seminář zaměřen na fenomén cestovního ruchu. Regionální zeměpis budeme nahlížet právě optikou cestovního ruchu. Ve 4. ročníku se seminář stává intenzivní přípravou na maturitní zkoušku." 
             },
-            { id: "PAJ", 
-             code: "PAJ", 
-             title: "Přípravný seminář k maturitě z anglického jazyka", 
-             subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], 
-             target: "Studenti, kteří chtějí maturovat z angličtiny a chtějí systematicky pracovat na své slovní zásobě a komunikačních dovednostech v rámci maturitních okruhů.", 
-             warning: "Seminář je koncipován jako dvouletý, lze si ho zapsat pro 3. i 4. ročník.", 
-             annotation: "Seminář se zaměřuje na komplexní přípravu k ústní části profilové maturitní zkoušky z anglického jazyka. Prohlubují se znalosti, dovednosti a kompetence v rámci stanovených maturitních témat (viz seznam na webových stránkách školy). Nedílnou součástí semináře je samostatná práce a příprava." },
-            { id: "KAJ", code: "KAJ", 
-             title: "Konverzační seminář z anglického jazyka", subject: "Anglický jazyk", 
-             group: "Jazyky", years: ["4. ročník"], 
-             target: "Studenti, kteří z angličtiny nematurují, ale chtějí si udržet a dále rozvíjet svou schopnost mluvit, argumentovat a přirozeně komunikovat v cizím jazyce.", 
-             warning: "Seminář si lze zapsat pouze pro 4. ročník.", 
-             annotation: "Angličtina jako brána do světa, nikoliv jen jako maturitní předmět. Tento seminář je určen všem, kteří chtějí zůstat v kontaktu s jazykem i v posledním ročníku, ale mají složený certifikát, nebo jejich maturitní priority leží v jiných oborech. Odkládáme stranou oficiální maturitní témata a zaměřujeme se na živý, moderní jazyk prostřednictvím debat o aktuálním dění, krátkodobých projektů a zajímavých témat, která hýbou světem. Je to prostor pro ty, kteří se chtějí cítit v angličtině sebevědomě i po opuštění gymnázia." },
-            { id: "KNJ", code: "KNJ", 
-             title: "Konverzace v německém jazyce", subject: "Německý jazyk", 
-             group: "Jazyky", years: ["3. ročník", "4. ročník"], 
-             target: "Studenti, kteří chtějí maturovat z němčiny, nebo chtějí svou němčinu dotáhnout na vysokou úroveň před odchodem na VŠ.", 
-             warning: "Seminář si lze zapsat pro 3. i 4. ročník.", 
-             annotation: "Seminář je zaměřen na přípravu k profilové/státní zkoušce z německého jazyka. Příprava se zaměřuje na složení ústní zkoušky (konverzační témata profilové části) a složení státní zkoušky formou DT (poslech, čtení a gramatika). Tento seminář je určen i těm, kteří nakonec z NJ maturovat nebudou, chtějí si však zdokonalit dovenosti v tomto cizím jazyce. Ve 4. ročníku doporučujeme propojení se seminářem Zertifikat Deutsch." },
-            { id: "SCM", code: "SCM", 
-             title: "Seminář a cvičení z matematiky", subject: "Matematika", group: "Přírodovědné", 
-             years: ["3. ročník", "4. ročník"], 
-             target: "Budoucí studenti technických a ekonomických univerzit i ti, kteří si chtějí upevnit logické základy pro přírodovědné obory (především FYZ).", 
-             warning: "Seminář je koncipován jako dvouletý, lze si ho zapsat pro 3. i 4. ročník. Pozdější nástup do semináře (až ve 4. ročníku) je možný, ale ne úplně optimální - počítejte s tím, že učivo z předchozího ročníku si budete muset v případě potřeby dostudovat sami.", 
-             annotation: "Tento seminář nabízí prostor pro témata, která běžná výuka nestíhá probrat do hloubky. Vstoupíme do světa komplexních čísel a velkou část věnujeme také kombinatorice a pravděpodobnosti, což jsou oblasti, které formují naše logické uvažování a schopnost analyzovat rizika a šance.  V tomto semináři se věnujeme výhradně matematické analýze, která je základním kamenem většiny vysokoškolských oborů. Naučíte se pracovat s limitami, derivacemi a integrály – nástroji, které umožňují popisovat změny, pohyby a tvary kolem nás. Cílem není jen počítání, ale pochopení souvislostí mezi funkcemi a jejich vlastnostmi. Je to seminář pro ty, kteří chtějí přijít na přednášku na VŠ a vědět, o čem se mluví." },
-            { id: "SCI", code: "SCI", 
-             title: "Seminář a cvičení z informatiky", subject: "Informatika", group: "Přírodovědné", 
-             years: ["3. ročník", "4. ročník"], 
-             target: "Zájemci o studium IT oborů, ale i pro zájemce o design, digitální média či technické a přírodovědné směry, kde je digitální gramotnost nezbytností.", 
-             warning: "Seminář je koncipován jako dvouletý, lze si ho zapsat pro 3. i 4. ročník. Pozdější nástup do semináře (až ve 4. ročníku) je možný, ale ne úplně optimální - počítejte s tím, že učivo z předchozího ročníku si budete muset v případě potřeby dostudovat sami.", 
-             annotation: "Chcete se posunout od pouhého užívání technologií k jejich tvorbě? Tento seminář otevírá dveře do světa vývoje webových aplikací a pokročilé práce s daty. Vedle kódu budeme sledovat i nejnovější trendy v IT a naučíme se, jak se efektivně (a bezpečně) pohybovat v kyberprostoru. Maturitní ročník je o propojování souvislostí. V tomto semináři se zaměříme na Python a kromě algoritmizace se budeme věnovat aktuálním výzvám v IT, kritickým otázkám kybernetické bezpečnosti a také tématům, která si sami zvolíte podle svého zájmu (např. AI, analýza dat či automatizace). Seminář slouží jako komplexní příprava k maturitě z informatiky i k přijímacím zkouškám na technické obory." }
+            { 
+                id: "PAJ", 
+                code: "PAJ", 
+                title: "Přípravný seminář k maturitě z anglického jazyka", 
+                subject: "Anglický jazyk", 
+                group: "Jazyky", 
+                years: ["3. ročník", "4. ročník"], 
+                target: "Studenti, kteří chtějí maturovat z angličtiny a chtějí systematicky pracovat na své slovní zásobě.", 
+                warning: "Seminář je koncipován jako dvouletý.", 
+                annotation: "Seminář se zaměřuje na komplexní přípravu k ústní části profilové maturitní zkoušky z anglického jazyka. Prohlubují se znalosti a dovednosti v rámci stanovených maturitních témat." 
+            },
+            { 
+                id: "KAJ", 
+                code: "KAJ", 
+                title: "Konverzační seminář z anglického jazyka", 
+                subject: "Anglický jazyk", 
+                group: "Jazyky", 
+                years: ["4. ročník"], 
+                target: "Studenti, kteří z angličtiny nematurují, ale chtějí si udržet svou schopnost mluvit.", 
+                warning: "Seminář si lze zapsat pouze pro 4. ročník.", 
+                annotation: "Angličtina jako brána do světa, nikoliv jen jako maturitní předmět. Odkládáme stranou oficiální maturitní témata a zaměřujeme se na živý, moderní jazyk prostřednictvím debat o aktuálním dění." 
+            },
+            { 
+                id: "KNJ", 
+                code: "KNJ", 
+                title: "Konverzace v německém jazyce", 
+                subject: "Německý jazyk", 
+                group: "Jazyky", 
+                years: ["3. ročník", "4. ročník"], 
+                target: "Studenti, kteří chtějí maturovat z němčiny nebo si zdokonalit dovednosti.", 
+                warning: "Seminář si lze zapsat pro 3. i 4. ročník.", 
+                annotation: "Seminář je zaměřen na přípravu k profilové/státní zkoušce z německého jazyka. Příprava se zaměřuje na složení ústní zkoušky a procvičování formou didaktických testů." 
+            },
+            { 
+                id: "SCM", 
+                code: "SCM", 
+                title: "Seminář a cvičení z matematiky", 
+                subject: "Matematika", 
+                group: "Přírodovědné", 
+                years: ["3. ročník", "4. ročník"], 
+                target: "Budoucí studenti technických a ekonomických univerzit.", 
+                warning: "Seminář je koncipován jako dvouletý.", 
+                annotation: "Tento seminář nabízí prostor pro témata, která běžná výuka nestíhá probrat do hloubky. Vstoupíme do světa komplexních čísel, kombinatoriky a matematické analýzy (limity, derivace, integrály)." 
+            },
+            { 
+                id: "SCI", 
+                code: "SCI", 
+                title: "Seminář a cvičení z informatiky", 
+                subject: "Informatika", 
+                group: "Přírodovědné", 
+                years: ["3. ročník", "4. ročník"], 
+                target: "Zájemci o studium IT oborů, designu či digitálních médií.", 
+                warning: "Seminář je koncipován jako dvouletý.", 
+                annotation: "Tento seminář otevírá dveře do světa vývoje webových aplikací a pokročilé práce s daty. V maturitním ročníku se zaměříme na Python, algoritmizaci a kybernetickou bezpečnost." 
+            }
         ];
 
         const App = () => {
@@ -188,7 +213,7 @@
           const filterGroups = ["all", ...new Set(SEMINARS_DATA.map(s => s.group))];
 
           return (
-            <div className="min-h-screen text-slate-900">
+            <div className="min-h-screen text-slate-900 bg-slate-50">
               <header className="bg-white border-b sticky top-0 z-30 shadow-sm">
                 <div className="max-w-6xl mx-auto px-4 py-6">
                   <div className="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -236,7 +261,7 @@
 
               <main className="max-w-6xl mx-auto px-4 py-10 space-y-12">
                 {groupedSeminars.length > 0 ? groupedSeminars.map(group => (
-                  <section key={group.subject} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  <section key={group.subject}>
                     <div className="flex items-center gap-4 mb-6">
                         <h2 className="text-xl font-black text-slate-800 uppercase tracking-tight">{group.subject}</h2>
                         <div className="h-px bg-slate-200 flex-grow"></div>
@@ -291,8 +316,8 @@
               {/* Detailní náhled */}
               {selectedSeminar && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                  <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300" onClick={() => setSelectedSeminar(null)}></div>
-                  <div className="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl relative z-10 overflow-hidden flex flex-col animate-in zoom-in duration-200 max-h-[90vh]">
+                  <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={() => setSelectedSeminar(null)}></div>
+                  <div className="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl relative z-10 overflow-hidden flex flex-col max-h-[90vh]">
                     <div className="bg-slate-900 p-8 md:p-10 text-white relative shrink-0">
                         <button onClick={() => setSelectedSeminar(null)} className="absolute top-6 right-6 p-2 hover:bg-white/10 rounded-full transition-colors">
                             <Icon name="x" className="w-6 h-6" />
