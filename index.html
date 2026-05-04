@@ -12,7 +12,7 @@
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         .subject-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1.5rem;
         }
     </style>
@@ -34,11 +34,11 @@
         };
 
         const SEMINARS_DATA = [
-            { id: "B2F", code: "B2F", title: "Přípravný seminář k mezinárodní zkoušce z AJ – úroveň B2", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník"], target: "studenti s pokročilou znalostí angličtiny (B1+)", goal: "Příprava k certifikátu", warning: "Výběrový seminář – vstupní test proběhne na konci 2. ročníku.", annotation: "Seminář je zaměřen na efektivní a intenzivní přípravu k mezinárodní zkoušce na úrovni B2. Studenti si procvičí všechny testované oblasti (Listening, Writing, Speaking, Use of English) a vyzkouší si simulaci zkoušky nanečisto." },
-            { id: "CAE", code: "CAE", title: "Přípravný seminář k mezinárodní zkoušce z AJ – úroveň C1", subject: "Anglický jazyk", group: "Jazyky", years: ["4. ročník"], target: "studenti s vynikající znalostí AJ (B2+/C1)", goal: "Příprava k certifikátu", warning: "Výběrový seminář – vstupní test proběhne na konci 3. ročníku.", annotation: "Seminář je zaměřen na přípravu ke zkoušce Cambridge English: Advanced (CAE). Náročná úroveň jazyka zahrnuje akademické psaní, komplexní gramatiku a plynulou konverzaci na abstraktní témata." },
+            { id: "B2F", code: "B2F", title: "Přípravný seminář k mezinárodní zkoušce z AJ – úroveň B2", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník"], isCertificate: true, target: "studenti s pokročilou znalostí angličtiny (B1+)", goal: "Příprava k certifikátu", warning: "Výběrový seminář – vstupní test proběhne na konci 2. ročníku.", annotation: "Seminář je zaměřen na efektivní a intenzivní přípravu k mezinárodní zkoušce na úrovni B2. Studenti si procvičí všechny testované oblasti (Listening, Writing, Speaking, Use of English) a vyzkouší si simulaci zkoušky nanečisto." },
+            { id: "CAE", code: "CAE", title: "Přípravný seminář k mezinárodní zkoušce z AJ – úroveň C1", subject: "Anglický jazyk", group: "Jazyky", years: ["4. ročník"], isCertificate: true, target: "studenti s vynikající znalostí AJ (B2+/C1)", goal: "Příprava k certifikátu", warning: "Výběrový seminář – vstupní test proběhne na konci 3. ročníku.", annotation: "Seminář je zaměřen na přípravu ke zkoušce Cambridge English: Advanced (CAE). Náročná úroveň jazyka zahrnuje akademické psaní, komplexní gramatiku a plynulou konverzaci na abstraktní témata." },
             { id: "PAJ", code: "PAJ", title: "Přípravný seminář k maturitě z anglického jazyka", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "budoucí maturanti z AJ", goal: "Příprava k maturitě", warning: "Seminář je koncipován jako dvouletý.", annotation: "Seminář se zaměřuje na komplexní přípravu k ústní části profilové maturitní zkoušky z AJ. Prohlubuje znalosti v rámci maturitních témat a procvičuje mluvený projev." },
             { id: "KAJ", code: "KAJ", title: "Konverzační seminář z anglického jazyka", subject: "Anglický jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "všichni studenti", goal: "Konverzace", warning: "", annotation: "Seminář je určen studentům, kteří chtějí rozvíjet své komunikační schopnosti v běžných i profesních situacích formou diskuzí, prezentací a interaktivních her." },
-            { id: "ZD", code: "ZD", title: "Příprava na zkoušku Zertifikat Deutsch B1", subject: "Německý jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "studenti NJ", goal: "Příprava k certifikátu", warning: "Obsah je stejný pro 3. i 4. ročník.", annotation: "Systematická příprava k získání mezinárodně uznávaného certifikátu Goethe-Zertifikat B1. Nácvik čtení, poslechu, psaní a mluvení podle oficiálních testů." },
+            { id: "ZD", code: "ZD", title: "Příprava na zkoušku Zertifikat Deutsch B1", subject: "Německý jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], isCertificate: true, target: "studenti NJ", goal: "Příprava k certifikátu", warning: "Obsah je stejný pro 3. i 4. ročník.", annotation: "Systematická příprava k získání mezinárodně uznávaného certifikátu Goethe-Zertifikat B1. Nácvik čtení, poslechu, psaní a mluvení podle oficiálních testů." },
             { id: "KNJ", code: "KNJ", title: "Konverzace v německém jazyce", subject: "Německý jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "studenti NJ", goal: "Konverzace", warning: "", annotation: "Praktické procvičování mluvené němčiny v reálných situacích. Ve 4. ročníku se seminář více zaměřuje na konverzační témata k maturitě." },
             { id: "KFJ", code: "KFJ", title: "Konverzace ve francouzském jazyce", subject: "Francouzský jazyk", group: "Jazyky", years: ["3. ročník", "4. ročník"], target: "studenti FJ", goal: "Konverzace", warning: "", annotation: "Rozvoj komunikačních dovedností skrze reálie a kulturu frankofonních zemí. Ve 4. ročníku intenzivnější příprava k ústní části maturity." },
             { id: "LS", code: "LS", title: "Literární seminář", subject: "Český jazyk", group: "Společenskovědní", years: ["3. ročník", "4. ročník"], target: "zájemci o literaturu a humanitní vědy", goal: "Příprava k maturitě", warning: "Seminář si lze zapsat pro 3. i 4. ročník.", annotation: "Seminář je určen studentům, kteří mají zájem o hlubší poznání literatury a chtějí se lépe připravit na maturitní zkoušku z českého jazyka. Zaměříme se na četbu a interpretaci vybraných literárních děl a diskusi o tématech." },
@@ -146,13 +146,20 @@
                             className="group bg-white p-6 rounded-[2rem] border border-slate-100 hover:shadow-xl hover:shadow-indigo-500/5 hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full relative"
                           >
                             <div className="flex justify-between items-start mb-4">
-                                <span className="bg-slate-100 text-slate-500 font-black text-[10px] px-3 py-1 rounded-lg tracking-widest uppercase">
-                                    {s.code}
-                                </span>
-                                <div className="flex gap-1">
+                                <div className="flex gap-2">
+                                    <span className="bg-slate-100 text-slate-500 font-black text-[10px] px-3 py-1 rounded-lg tracking-widest uppercase">
+                                        {s.code}
+                                    </span>
+                                    {s.isCertificate && (
+                                        <span className="bg-amber-100 text-amber-600 font-black text-[10px] px-3 py-1 rounded-lg tracking-widest uppercase flex items-center gap-1">
+                                            <Icon name="award" className="w-3 h-3" /> Certifikát
+                                        </span>
+                                    )}
+                                </div>
+                                <div className="flex flex-col gap-1 items-end">
                                     {s.years.map(y => (
                                         <span key={y} className={`text-[9px] font-extrabold px-2 py-0.5 rounded-md uppercase tracking-wider border ${y.includes("3.") ? "bg-purple-50 text-purple-600 border-purple-100" : "bg-blue-50 text-blue-600 border-blue-100"}`}>
-                                            {y.split('.')[0]}.
+                                            {y}
                                         </span>
                                     ))}
                                 </div>
@@ -196,6 +203,11 @@
                             <span className="px-3 py-1 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 rounded-xl text-[10px] font-black uppercase tracking-widest">
                                 {selectedSeminar.subject}
                             </span>
+                            {selectedSeminar.isCertificate && (
+                                <span className="px-3 py-1 bg-amber-500/20 border border-amber-500/30 text-amber-300 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-1">
+                                    <Icon name="award" className="w-3 h-3" /> Certifikát
+                                </span>
+                            )}
                         </div>
                         <h2 className="text-2xl md:text-3xl font-[900] leading-tight tracking-tight">
                             {selectedSeminar.title}
