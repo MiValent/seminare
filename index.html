@@ -408,12 +408,20 @@
                             <h5 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-widest">Pro koho je určen</h5>
                             <p className="text-sm font-bold text-slate-700">{selectedSeminar.target}</p>
                         </div>
-{/* Speciální info pro angličtinu */}
-{selectedSeminar.group === "Anglický jazyk" && (
+{/* Speciální info pro angličtinu – kontrola podle konkrétních kódů */}
+{selectedSeminar.code && ["B2F", "CAE", "KAJ", "PAJ"].includes(selectedSeminar.code) && (
     <div className="md:col-span-2 bg-indigo-50 p-4 rounded-2xl border border-indigo-100 flex gap-3 items-start">
-        <div className="bg-indigo-600 p-1.5 rounded-lg">
-            <Icon name="info" className="w-4 h-4 text-white" />
+        <div className="bg-indigo-600 p-1.5 rounded-lg text-white">
+            <Icon name="info" className="w-4 h-4" />
         </div>
+        <div>
+            <h5 className="text-[10px] font-black uppercase text-indigo-600 mb-1 tracking-widest">Pravidlo zápisu</h5>
+            <p className="text-sm font-bold text-indigo-900 leading-tight">
+                V každém ročníku si lze zapsat pouze jeden seminář z anglického jazyka.
+            </p>
+        </div>
+    </div>
+)}
         <div>
             <h5 className="text-[10px] font-black uppercase text-indigo-600 mb-1 tracking-widest">Pravidlo zápisu</h5>
             <p className="text-sm font-bold text-indigo-900 leading-tight">
