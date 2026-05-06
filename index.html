@@ -315,9 +315,9 @@
             });
         }, [filteredSeminare]);
 
-            const groups = ["all", ...new Set(SEMINARS_DATA.map(s => s.group))];
+        const groups = ["all", ...new Set(seminareData.map(s => s.group))];
 
-            return (
+        return (
                 <div className="min-h-screen bg-slate-50">
                     <header className="bg-white border-b sticky top-0 z-30 shadow-sm px-4 py-6">
                         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
