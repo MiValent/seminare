@@ -24,9 +24,9 @@
         const { useState, useMemo, useEffect } = React;
 
         const Icon = ({ name, className }) => {
-            useEffect(() => { 
-                if (window.lucide) window.lucide.createIcons(); 
-            }, [name, className]);
+            useEffect(() => {
+                if (window.lucide) window.lucide.createIcons();
+            }, [name]);
             return <i data-lucide={name} className={className}></i>;
         };
 
@@ -275,113 +275,61 @@
 
         const App = () => {
             const [selectedSeminar, setSelectedSeminar] = useState(null);
-            const [searchQuery, setSearchQuery] = useState("");
-            const [yearFilter, setYearFilter] = useState("all");
-            const [groupFilter, setGroupFilter] = useState("all");
+            const [filter, setFilter] = useState('Vše');
+            const formUrl = "https://forms.gle/YxnYDD6ataCjBwve6";
 
-            // ODKAZ NA FORMULÁŘ
-            const formUrl = "https://forms.gle/XbpCdwsuNA7FazwN6";
-
-            const filteredSeminars = useMemo(() => {
-                return SEMINARS_DATA.filter(s => {
-                    const matchesSearch = s.title.toLowerCase().includes(searchQuery.toLowerCase()) || s.code.toLowerCase().includes(searchQuery.toLowerCase());
-                    const matchesYear = yearFilter === "all" || s.years.some(y => y.includes(yearFilter));
-                    const matchesGroup = groupFilter === "all" || s.group === groupFilter;
-                    return matchesSearch && matchesYear && matchesGroup;
-                });
-            }, [searchQuery, yearFilter, groupFilter]);
-
-            const subjects = [...new Set(filteredSeminars.map(s => s.subject))].sort();
-            const groups = ["all", ...new Set(SEMINARS_DATA.map(s => s.group))];
+            const categories = ['Vše', ...new Set(seminareData.map(s => s.group))];
+            
+            const filteredSeminare = useMemo(() => 
+                filter === 'Vše' ? seminareData : seminareData.filter(s => s.group === filter),
+                [filter]
+            );
 
             return (
-                <div className="min-h-screen bg-slate-50">
-                    <header className="bg-white border-b sticky top-0 z-30 shadow-sm px-4 py-6">
-                        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-                            <div className="flex items-center gap-4">
-                                <div className="bg-indigo-600 p-2 rounded-xl text-white">
-                                    <Icon name="graduation-cap" className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <h1 className="text-xl font-black uppercase tracking-tight">Katalog seminářů 26/27</h1>
-                                    <p className="text-xs text-slate-500 font-bold uppercase tracking-widest text-center md:text-left">Gymnázium Slaný</p>
-                                </div>
+                <div className="min-h-screen">
+                    {/* Header */}
+                    <header className="bg-white border-b sticky top-0 z-30">
+                        <div className="max-w-6xl mx-auto px-4 py-6 flex justify-between items-center">
+                            <div>
+                                <h1 className="text-2xl font-black tracking-tighter uppercase text-slate-900">Katalog Seminářů</h1>
+                                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Gymnázium Slaný | 2026/27</p>
                             </div>
-                            <div className="flex gap-2 w-full md:w-auto">
-                                <input 
-                                    className="flex-grow md:w-64 px-4 py-2 bg-slate-100 rounded-xl outline-none focus:ring-2 ring-indigo-500/20 font-medium"
-                                    placeholder="Hledat..."
-                                    value={searchQuery}
-                                    onChange={e => setSearchQuery(e.target.value)}
-                                />
-                                <select 
-                                    className="px-4 py-2 bg-white border rounded-xl font-bold text-sm"
-                                    value={yearFilter}
-                                    onChange={e => setYearFilter(e.target.value)}
-                                >
-                                    <option value="all">Všechny ročníky</option>
-                                    <option value="3.">3. ročník</option>
-                                    <option value="4.">4. ročník</option>
-                                </select>
-                            </div>
+                            <a href={formUrl} target="_blank" className="hidden md:flex bg-indigo-600 text-white px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-indigo-700 transition-all items-center gap-2">
+                                Chci se zapsat <Icon name="chevron-right" className="w-4 h-4" />
+                            </a>
                         </div>
                     </header>
 
-                    <main className="max-w-6xl mx-auto px-4 py-8">
-                        {/* Banner s tlačítkem zápisu */}
-                        <div className="bg-indigo-900 rounded-3xl p-8 mb-12 shadow-2xl flex flex-col md:flex-row justify-between items-center gap-6">
-                            <div className="text-center md:text-left text-white font-black uppercase">
-                                <h3 className="text-2xl mb-1">Máš už vybráno?</h3>
-                                <p className="text-indigo-200 text-sm tracking-wide">Přejdi k odeslání volby přes tlačítko vpravo.</p>
-                            </div>
-                            <a href={formUrl} target="_blank" className="bg-emerald-500 hover:bg-emerald-400 text-white px-10 py-5 rounded-2xl font-black shadow-lg transition-all hover:scale-105 flex items-center gap-3 uppercase tracking-wider">
-                                <span>CHCI SE ZAPSAT</span>
-                                <Icon name="chevron-right" className="w-6 h-6" />
-                            </a>
-                        </div>
-
-                        {/* Filtry skupin */}
-                        <div className="flex overflow-x-auto gap-2 mb-10 pb-2 scrollbar-hide">
-                            {groups.map(g => (
-                                <button 
-                                    key={g} 
-                                    onClick={() => setGroupFilter(g)}
-                                    className={`px-4 py-2 rounded-full text-[10px] font-black transition-all whitespace-nowrap border-2 uppercase ${groupFilter === g ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-400 border-slate-200'}`}
-                                >
-                                    {g === "all" ? "Všechny skupiny" : g}
+                    {/* Filtry */}
+                    <div className="max-w-6xl mx-auto px-4 py-8">
+                        <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide">
+                            {categories.map(cat => (
+                                <button key={cat} onClick={() => setFilter(cat)}
+                                    className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap ${filter === cat ? 'bg-slate-900 text-white shadow-lg' : 'bg-white text-slate-400 hover:bg-slate-100'}`}>
+                                    {cat}
                                 </button>
                             ))}
                         </div>
 
-                        {subjects.map(subject => (
-                            <div key={subject} className="mb-12">
-                                <h2 className="text-2xl font-black text-slate-800 mb-6 uppercase border-l-4 border-indigo-600 pl-4">{subject}</h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    {filteredSeminars.filter(s => s.subject === subject).map(s => (
-                                        <div 
-                                            key={s.id} 
-                                            onClick={() => setSelectedSeminar(s)}
-                                            className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all cursor-pointer flex flex-col group"
-                                        >
-                                            <div className="flex justify-between items-start mb-4">
-                                                <span className="bg-indigo-50 text-indigo-700 text-[10px] font-black px-2 py-1 rounded uppercase tracking-tighter">{s.code}</span>
-                                                <div className="flex gap-1">
-                                                    {s.years.map(y => <span key={y} className="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded">{y}</span>)}
-                                                </div>
-                                            </div>
-                                            <h4 className="font-bold text-lg mb-3 leading-tight group-hover:text-indigo-600 transition-colors">{s.title}</h4>
-                                            <p className="text-slate-500 text-sm line-clamp-3">{s.annotation}</p>
-                                            <div className="mt-auto pt-4 flex items-center text-indigo-500 text-[10px] font-black uppercase tracking-widest gap-2">
-                                                Zobrazit podrobnosti <Icon name="arrow-right" className="w-3 h-3" />
-                                            </div>
-                                        </div>
-                                    ))}
+                        {/* Mřížka seminářů */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                            {filteredSeminare.map(s => (
+                                <div key={s.id} onClick={() => setSelectedSeminar(s)} className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all cursor-pointer group border border-slate-100 flex flex-col h-full">
+                                    <div className="flex justify-between items-start mb-6">
+                                        <span className="bg-slate-100 text-slate-900 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">{s.code}</span>
+                                        <Icon name="arrow-up-right" className="w-5 h-5 text-slate-300 group-hover:text-indigo-600 transition-colors" />
+                                    </div>
+                                    <h3 className="text-xl font-black leading-tight mb-4 uppercase tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">{s.title}</h3>
+                                    <p className="text-slate-500 text-sm font-medium line-clamp-3 mb-6 flex-grow">{s.annotation}</p>
+                                    <div className="pt-6 border-t border-slate-50 mt-auto">
+                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{s.target}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </main>
+                            ))}
+                        </div>
+                    </div>
 
-               {/* Modální okno s detailem */}
+                    {/* Modální okno s detailem */}
                     {selectedSeminar && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm" onClick={() => setSelectedSeminar(null)}>
                             <div className="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative animate-in fade-in zoom-in duration-200" onClick={e => e.stopPropagation()}>
@@ -409,10 +357,10 @@
                                                 <p className="text-sm font-bold text-slate-700">{selectedSeminar.target}</p>
                                             </div>
 
-                                            {/* Speciální info pro angličtinu – kontrola podle kódů */}
+                                            {/* Modrý box pro AJ */}
                                             {selectedSeminar.code && ["B2F", "CAE", "KAJ", "PAJ"].includes(selectedSeminar.code) && (
                                                 <div className="md:col-span-2 bg-indigo-50 p-4 rounded-2xl border border-indigo-100 flex gap-3 items-start">
-                                                    <div className="bg-indigo-600 p-1.5 rounded-lg text-white">
+                                                    <div className="bg-indigo-600 p-1.5 rounded-lg text-white mt-0.5 text-[0px]">
                                                         <Icon name="info" className="w-4 h-4" />
                                                     </div>
                                                     <div>
@@ -424,12 +372,13 @@
                                                 </div>
                                             )}
 
+                                            {/* Žlutý box pro poznámku (warning) */}
                                             {selectedSeminar.warning && (
                                                 <div className="bg-amber-50 p-4 rounded-2xl border border-amber-100 md:col-span-2">
                                                     <h5 className="text-[10px] font-black uppercase text-amber-600 mb-1 tracking-widest flex items-center gap-2">
                                                         <Icon name="alert-circle" className="w-3 h-3" /> Poznámka
                                                     </h5>
-                                                    <p className="text-sm italic text-amber-900">{selectedSeminar.warning}</p>
+                                                    <p className="text-sm italic text-amber-900 leading-tight">{selectedSeminar.warning}</p>
                                                 </div>
                                             )}
                                         </div>
@@ -437,60 +386,21 @@
                                 </div>
 
                                 <div className="bg-slate-50 p-6 flex justify-center items-center border-t">
-                                    <button 
-                                        onClick={() => setSelectedSeminar(null)} 
-                                        className="bg-slate-200 text-slate-600 px-8 py-3 rounded-xl font-black uppercase text-xs hover:bg-slate-300 transition-all tracking-widest"
-                                    >
+                                    <button onClick={() => setSelectedSeminar(null)} className="bg-slate-200 text-slate-600 px-8 py-3 rounded-xl font-black uppercase text-xs hover:bg-slate-300 transition-all tracking-widest">
                                         Zavřít detail
                                     </button>
                                 </div>
                             </div>
                         </div>
                     )}
-        <div>
-            <h5 className="text-[10px] font-black uppercase text-indigo-600 mb-1 tracking-widest">Pravidlo zápisu</h5>
-            <p className="text-sm font-bold text-indigo-900 leading-tight">
-                V každém ročníku si lze zapsat pouze jeden seminář z anglického jazyka.
-            </p>
-        </div>
-    </div>
-)}
-                        {selectedSeminar.warning && (
-                            <div className="bg-amber-50 p-4 rounded-2xl border border-amber-100">
-                                <h5 className="text-[10px] font-black uppercase text-amber-600 mb-1 tracking-widest flex items-center gap-2">
-                                    <Icon name="alert-circle" className="w-3 h-3" /> Poznámka
-                                </h5>
-                                <p className="text-sm italic text-amber-900">{selectedSeminar.warning}</p>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div>
 
-            {/* UPRAVENÁ SPODNÍ ČÁST - Tlačítko zapsat odstraněno */}
-            <div className="bg-slate-50 p-6 flex justify-center items-center border-t">
-                <button 
-                    onClick={() => setSelectedSeminar(null)} 
-                    className="bg-slate-200 text-slate-600 px-8 py-3 rounded-xl font-black uppercase text-xs hover:bg-slate-300 transition-all tracking-widest"
-                >
-                    Zavřít detail
-                </button>
-            </div>
-        </div>
-    </div>
-)}
-
-                    {/* Plovoucí tlačítko zápisu */}
+                    {/* Plovoucí tlačítko */}
                     <div className="fixed bottom-8 right-8 z-40">
                         <a href={formUrl} target="_blank" className="bg-emerald-500 text-white w-14 h-14 md:w-auto md:px-6 rounded-full shadow-2xl hover:bg-emerald-600 transition-all flex items-center justify-center gap-3 group">
                             <Icon name="pen-line" className="w-6 h-6" />
                             <span className="hidden md:block font-black uppercase text-xs tracking-widest">Zápis seminářů</span>
                         </a>
                     </div>
-
-                    <footer className="max-w-6xl mx-auto px-4 py-12 border-t text-center">
-                        <p className="text-slate-400 text-xs font-black uppercase tracking-[0.3em] mb-4">Gymnázium Slaný 2026/27</p>
-                    </footer>
                 </div>
             );
         };
