@@ -291,7 +291,7 @@
                 });
             }, [searchQuery, yearFilter, groupFilter]);
 
-            const subjects = [...new Set(filteredSeminare.map(s => s.subject))].sort((a, b) => {
+            const subjects = [...new Set(filteredSeminars.map(s => s.subject))].sort((a, b) => {
     // Definujte si přesné pořadí předmětů, jak jdou za sebou
     const poradi = [
 "angličtina",
@@ -311,7 +311,7 @@
   ];
     
     return poradi.indexOf(a) - poradi.indexOf(b);
-});
+}, [filteredSeminare]);
 
             const groups = ["all", ...new Set(SEMINARS_DATA.map(s => s.group))];
 
