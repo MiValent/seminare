@@ -282,16 +282,17 @@
             // ODKAZ NA FORMULÁŘ
             const formUrl = "https://forms.gle/XbpCdwsuNA7FazwN6";
 
-            const filteredSeminars = useMemo(() => {
-                return SEMINARS_DATA.filter(s => {
-                    const matchesSearch = s.title.toLowerCase().includes(searchQuery.toLowerCase()) || s.code.toLowerCase().includes(searchQuery.toLowerCase());
-                    const matchesYear = yearFilter === "all" || s.years.some(y => y.includes(yearFilter));
-                    const matchesGroup = groupFilter === "all" || s.group === groupFilter;
-                    return matchesSearch && matchesYear && matchesGroup;
-                });
-            }, [searchQuery, yearFilter, groupFilter]);
+            const categories = useMemo(() => {
+            const uniqueGroups = Array.from(new Set(seminareData.map(s => s.group)));
+            uniqueGroups.sort((a, b) => a.localeCompare('cs', { sensitivity: 'base' }));
+            return ['Vše', ...uniqueGroups];
+        }, []);
 
-const subjects = useMemo(() => {
+        const filteredSeminare = useMemo(() => {
+            return filter === 'Vše' ? seminareData : seminareData.filter(s => s.group === filter);
+        }, [filter]);
+
+        const subjects = useMemo(() => {
             const rawSubjects = [...new Set(filteredSeminare.map(s => s.subject))];
             return rawSubjects.sort((a, b) => {
                 const poradi = [
@@ -310,7 +311,6 @@ const subjects = useMemo(() => {
                     "základy společenských věd",
                     "zeměpis"
                 ];
-                
                 return poradi.indexOf(a) - poradi.indexOf(b);
             });
         }, [filteredSeminare]);
