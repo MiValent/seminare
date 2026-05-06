@@ -30,7 +30,9 @@
             return <i data-lucide={name} className={className}></i>;
         };
 
-        const SEMINARS_DATA = [
+        // --- DATA SEMINÁŘŮ ---
+        const seminareData = [
+          const SEMINARS_DATA = [
               { 
                 "id": "B2F", 
                 "code": "B2F", 
@@ -271,7 +273,7 @@
                 "warning": "Seminář si lze zapsat pro 3. i 4. ročník.", 
                 "annotation": "Seminář je určen studentům, kteří mají zájem o hlubší poznání literatury a chtějí se lépe připravit na maturitní zkoušku z českého jazyka. Zaměříme se na četbu a interpretaci vybraných literárních děl, diskusi o tématech, postavách, literárních směrech. Vyzkoušítem si různé způsoby práce s textem, naučíte se formulovat vlastní názor na přečtené dílo a procvičíte si dovednosti potřebné k ústní maturitě." 
             }
- ];
+        ];
 
         const App = () => {
             const [selectedSeminar, setSelectedSeminar] = useState(null);
@@ -311,7 +313,7 @@
                             ))}
                         </div>
 
-                        {/* Mřížka seminářů */}
+                        {/* Karty seminářů */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                             {filteredSeminare.map(s => (
                                 <div key={s.id} onClick={() => setSelectedSeminar(s)} className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all cursor-pointer group border border-slate-100 flex flex-col h-full">
@@ -329,15 +331,15 @@
                         </div>
                     </div>
 
-                    {/* Modální okno s detailem */}
+                    {/* Modální okno */}
                     {selectedSeminar && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm" onClick={() => setSelectedSeminar(null)}>
-                            <div className="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative animate-in fade-in zoom-in duration-200" onClick={e => e.stopPropagation()}>
+                            <div className="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative" onClick={e => e.stopPropagation()}>
                                 <button onClick={() => setSelectedSeminar(null)} className="absolute top-6 right-6 p-2 bg-slate-100 rounded-full hover:bg-slate-200 transition-colors">
                                     <Icon name="x" className="w-5 h-5" />
                                 </button>
                                 
-                                <div className="p-8 md:p-12">
+                                <div className="p-8 md:p-12 text-left">
                                     <div className="flex items-center gap-3 mb-6">
                                         <span className="bg-indigo-600 text-white text-xs font-black px-3 py-1 rounded-full uppercase tracking-widest">{selectedSeminar.code}</span>
                                         <span className="text-slate-400 font-bold uppercase text-xs tracking-widest">{selectedSeminar.group}</span>
@@ -347,38 +349,37 @@
                                     
                                     <div className="space-y-6">
                                         <div>
-                                            <h5 className="text-[10px] font-black uppercase text-indigo-500 mb-2 tracking-widest">Anotace</h5>
-                                            <p className="text-slate-600 leading-relaxed font-medium">{selectedSeminar.annotation}</p>
+                                            <h5 className="text-[10px] font-black uppercase text-indigo-500 mb-2 tracking-widest text-left">Anotace</h5>
+                                            <p className="text-slate-600 leading-relaxed font-medium text-left">{selectedSeminar.annotation}</p>
                                         </div>
                                         
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-slate-100">
                                             <div>
-                                                <h5 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-widest">Pro koho je určen</h5>
-                                                <p className="text-sm font-bold text-slate-700">{selectedSeminar.target}</p>
+                                                <h5 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-widest text-left">Pro koho je určen</h5>
+                                                <p className="text-sm font-bold text-slate-700 text-left">{selectedSeminar.target}</p>
                                             </div>
 
-                                            {/* Modrý box pro AJ */}
+                                            {/* Modrý box pro AJ kódy */}
                                             {selectedSeminar.code && ["B2F", "CAE", "KAJ", "PAJ"].includes(selectedSeminar.code) && (
                                                 <div className="md:col-span-2 bg-indigo-50 p-4 rounded-2xl border border-indigo-100 flex gap-3 items-start">
-                                                    <div className="bg-indigo-600 p-1.5 rounded-lg text-white mt-0.5 text-[0px]">
+                                                    <div className="bg-indigo-600 p-1.5 rounded-lg text-white">
                                                         <Icon name="info" className="w-4 h-4" />
                                                     </div>
                                                     <div>
-                                                        <h5 className="text-[10px] font-black uppercase text-indigo-600 mb-1 tracking-widest">Pravidlo zápisu</h5>
-                                                        <p className="text-sm font-bold text-indigo-900 leading-tight">
+                                                        <h5 className="text-[10px] font-black uppercase text-indigo-600 mb-1 tracking-widest text-left">Pravidlo zápisu</h5>
+                                                        <p className="text-sm font-bold text-indigo-900 leading-tight text-left">
                                                             V každém ročníku si lze zapsat pouze jeden seminář z anglického jazyka.
                                                         </p>
                                                     </div>
                                                 </div>
                                             )}
 
-                                            {/* Žlutý box pro poznámku (warning) */}
                                             {selectedSeminar.warning && (
-                                                <div className="bg-amber-50 p-4 rounded-2xl border border-amber-100 md:col-span-2">
+                                                <div className="bg-amber-50 p-4 rounded-2xl border border-amber-100 md:col-span-2 text-left">
                                                     <h5 className="text-[10px] font-black uppercase text-amber-600 mb-1 tracking-widest flex items-center gap-2">
                                                         <Icon name="alert-circle" className="w-3 h-3" /> Poznámka
                                                     </h5>
-                                                    <p className="text-sm italic text-amber-900 leading-tight">{selectedSeminar.warning}</p>
+                                                    <p className="text-sm italic text-amber-900 leading-tight text-left">{selectedSeminar.warning}</p>
                                                 </div>
                                             )}
                                         </div>
