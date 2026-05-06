@@ -291,28 +291,28 @@
                 });
             }, [searchQuery, yearFilter, groupFilter]);
 
-            const subjects = useMemo(() => {
-    return [...new Set(filteredSeminare.map(s => s.subject))].sort((a, b) => {
-        const poradi = [
-"angličtina",
-"biologie",
-"český jazyk a literatura",  
-"dějepis",
-"francouzština",
-"fyzika",
-"chemie",
-"informatika",
-"matematika",        
-"němčina",
-"psychologie",
-"výtvarná výchova",
-"základy společenských věd",
-"zeměpis",
-];
-        
-        return poradi.indexOf(a) - poradi.indexOf(b);
-  });
-}, [filteredSeminare]);
+const subjects = useMemo(() => {
+            return [...new Set(filteredSeminare.map(s => s.subject))].sort((a, b) => {
+                const poradi = [
+                    "anglický jazyk",
+                    "biologie",
+                    "český jazyk", 
+                    "dějepis",
+                    "francouzský jazyk",
+                    "fyzika",
+                    "chemie",
+                    "informatika",
+                    "matematika",        
+                    "německý jazyk",
+                    "psychologie",
+                    "výtvarná výchova",
+                    "základy společenských věd",
+                    "zeměpis"
+                ];
+                
+                return poradi.indexOf(a) - poradi.indexOf(b);
+            });
+        }, [filteredSeminare]);
 
             const groups = ["all", ...new Set(SEMINARS_DATA.map(s => s.group))];
 
