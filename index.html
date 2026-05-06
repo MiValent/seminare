@@ -203,7 +203,7 @@
                 "id": "SVS", 
                 "code": "SVS", 
                 "title": "Společenskovědní seminář",
-                "subject": "občanská nauka", 
+                "subject": "základy společenských věd", 
                 "group": "humanitní vědy", 
                 "years": ["3. ročník", "4. ročník"], 
                 "isCertificate": false, 
@@ -215,7 +215,7 @@
                 "id": "SVV", 
                 "code": "SVV", 
                 "title": "Seminář z výtvarné výchovy",
-                "subject": "výtvarná vychova", 
+                "subject": "výtvarná výchova", 
                 "group": "humanitní vědy", 
                 "years": ["3. ročník", "4. ročník"], 
                 "isCertificate": false, 
@@ -291,24 +291,28 @@
                 });
             }, [searchQuery, yearFilter, groupFilter]);
 
-            const subjects = [...new Set(filteredSeminars.map(s => s.subject))].sort((a, b) => {
+            const subjects = [...new Set(filteredSeminare.map(s => s.subject))].sort((a, b) => {
     // Definujte si přesné pořadí předmětů, jak jdou za sebou
     const poradi = [
-"anglický jazyk",
+"angličtina",
 "biologie",
- "český jazyk", 
- "dějepis",
-"francouzský jazyk",
+"český jazyk a literatura",  
+"dějepis",
+"francouzština",
 "fyzika",
 "chemie",
 "informatika",
 "matematika",        
-"německý jazyk",
+"němčina",
 "psychologie",
 "výtvarná výchova",
 "základy společenských věd",
 "zeměpis",
   ];
+    
+    return poradi.indexOf(a) - poradi.indexOf(b);
+});
+
     
     return poradi.indexOf(a) - poradi.indexOf(b);
 });
