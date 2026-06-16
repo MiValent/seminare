@@ -24,11 +24,13 @@
         const { useState, useMemo, useEffect } = React;
 
         const Icon = ({ name, className }) => {
-            useEffect(() => { 
-                if (window.lucide) window.lucide.createIcons(); 
-            }, [name, className]);
-            return <i data-lucide={name} className={className}></i>;
-        };
+    useEffect(() => { 
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    }, [name, className]);
+    return <i data-lucide={name} className={className}></i>;
+};
 
         const SEMINARS_DATA = [
               { 
