@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog seminářů 2026/27 | Gymnázium Slaný</title>
+    <title>Katalog Seminářů 2026/27 | Gymnázium Slaný</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
@@ -15,22 +15,23 @@
 <body class="bg-slate-50 text-slate-900 pb-20">
     <div id="root"></div>
 
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Stabilní a uzamčené verze knihoven, které spolu 100% fungují -->
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/lucide@0.300.0/dist/umd/lucide.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.23.12/babel.min.js"></script>
 
     <script type="text/babel">
         const { useState, useMemo, useEffect } = React;
 
         const Icon = ({ name, className }) => {
-    useEffect(() => { 
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    }, [name, className]);
-    return <i data-lucide={name} className={className}></i>;
-};
+            useEffect(() => { 
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    lucide.createIcons();
+                }
+            }, [name, className]);
+            return <i data-lucide={name} className={className}></i>;
+        };
 
         const SEMINARS_DATA = [
               { 
@@ -91,7 +92,7 @@
                 "isCertificate": false, 
                 "target": "Studenti, kteří chtějí maturovat z němčiny, nebo chtějí svou němčinu dotáhnout na vysokou úroveň před odchodem na VŠ.", 
                 "warning": "Seminář si lze zapsat pro 3. i 4. ročník.", 
-                "annotation": "Seminář je zaměřen na přípravu k profilové/státní zkoušce z německého jazyka. Příprava se zaměřuje na složení ústní zkoušky (konverzační témata profilové části) a složení státní zkoušky formou DT (poslech, čtení a gramatika). Tento seminář je určen i těm, kteří nakonec z NJ maturovat nebudou, chtějí si však zdokonalit dovenosti v tomto cizím jazyce. Ve 4. ročníku doporučujeme propojení se seminářem Zertifikat Deutsch." 
+                "annotation": "Seminář je zaměřen na přípravu k profilové/státní zkoušce z německého jazyka. Příprava se zaměřuje na složení ústní zkoušky (konverzační témata profilové části) and složení státní zkoušky formou DT (poslech, čtení a gramatika). Tento seminář je určen i těm, kteří nakonec z NJ maturovat nebudou, chtějí si však zdokonalit dovenosti v tomto cizím jazyce. Ve 4. ročníku doporučujeme propojení se seminářem Zertifikat Deutsch." 
             },
             { 
                 "id": "ZD", 
@@ -187,7 +188,7 @@
                 "isCertificate": false, 
                 "target": "Budoucí studenti technických a ekonomických univerzit i ti, kteří si chtějí upevnit logické základy pro přírodovědné obory (především FYZ).", 
                 "warning": "Pozdější nástup do semináře (až ve 4. ročníku) je možný, ale ne úplně optimální - počítejte s tím, že učivo z předchozího ročníku si budete muset v případě potřeby dostudovat sami.", 
-                "annotation": "Seminář je postaven jako příprava na VŠ: probírají se limity funkce, derivace a integrály. Cílem semináře je pomoci studentům zvládnout první ročník VŠ. Dalším cílem je prohloubení látky z matematiky SŠ a průběžná příprava k maturitě z MAT. Seminář je vhodný pro všechny, kteří chtějí maturovat z fyziky, kde jim bude vysvětleno, jak se matematika ve fyzice využívá." 
+                "annotation": "Seminář je postaven jako příprava na VŠ: probírají se limity funkce, derivace a integrály. Cílem semináře je pomoci studentům zvládnut první ročník VŠ. Dalším cílem je prohloubení látky z matematiky SŠ a průběžná příprava k maturitě z MAT. Seminář je vhodný pro všechny, kteří chtějí maturovat z fyziky, kde jim bude vysvětleno, jak se matematika ve fyzice využívá." 
             },
             { 
                 "id": "PSY", 
@@ -222,7 +223,7 @@
                 "years": ["3. ročník", "4. ročník"], 
                 "isCertificate": false, 
                 "target": "Uchazeči o studium architektury, dějin umění, designu, restaurování či estetiky na vysokých školách.", 
-                "warning": "Pozdější nástup do semináře (až ve 4. ročníku) je možný, ale ne úplně optimální - počítejte s tím, že učivo z předchozího ročníku si budete muset v případě potřeby dostudovat sami.", 
+                "warning": "Pozdější nástup do semináře (až ve 4. ročníku) is možný, ale ne úplně optimální - počítejte s tím, že učivo z předchozího ročníku si budete muset v případě potřeby dostudovat sami.", 
                 "annotation": "Teoreticko-praktický seminář, který vás nejen posune ve vlastní tvorbě, ale provede vás také klíčovými uměleckými směry a životními osudy významných tvůrců. Budeme společně rozebírat vybraná díla, hledat v nich skryté významy a zasazovat je do historických i filozofických souvislostí. Zaměříme se na syntézu poznatků z dějin umění a jejich uplatnění při přijímacích zkouškách na umělecké a humanitní obory. Sledováním proměn vizuálního jazyka až do současnosti propojíme výtvarné umění s architekturou. Seminář klade důraz na vlastní kreativní práci, schopnost odborné interpretace a budování uceleného přehledu o světovém i českém výtvarném dědictví. " 
             },
             { 
@@ -273,7 +274,7 @@
                 "warning": "Seminář si lze zapsat pro 3. i 4. ročník.", 
                 "annotation": "Seminář je určen studentům, kteří mají zájem o hlubší poznání literatury a chtějí se lépe připravit na maturitní zkoušku z českého jazyka. Zaměříme se na četbu a interpretaci vybraných literárních děl, diskusi o tématech, postavách, literárních směrech. Vyzkoušítem si různé způsoby práce s textem, naučíte se formulovat vlastní názor na přečtené dílo a procvičíte si dovednosti potřebné k ústní maturitě." 
             }
- ];
+        ];
 
         const App = () => {
             const [selectedSeminar, setSelectedSeminar] = useState(null);
@@ -281,9 +282,8 @@
             const [yearFilter, setYearFilter] = useState("all");
             const [groupFilter, setGroupFilter] = useState("all");
 
-            const formUrl = "https://forms.gle/XbpCdwsuNA7FazwN6";
+            const formUrl = "https://forms.gle/yAGSfmc9gAXMCQyF8";
 
-            // 1. FILTRACE DAT (Hledání + Ročník + Skupina)
             const filteredSeminars = useMemo(() => {
                 return SEMINARS_DATA.filter(s => {
                     const matchesSearch = s.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -294,14 +294,12 @@
                 });
             }, [searchQuery, yearFilter, groupFilter]);
 
-            // 2. SEZNAM SKUPIN (pro tlačítka nahoře)
             const groups = useMemo(() => {
                 const uniqueGroups = Array.from(new Set(SEMINARS_DATA.map(s => s.group)));
                 uniqueGroups.sort((a, b) => a.localeCompare('cs', { sensitivity: 'base' }));
                 return ["all", ...uniqueGroups];
             }, []);
 
-            // 3. SEZNAM PŘEDMĚTŮ (seřazený podle vašeho seznamu)
             const subjects = useMemo(() => {
                 const rawSubjects = [...new Set(filteredSeminars.map(s => s.subject))];
                 return rawSubjects.sort((a, b) => {
